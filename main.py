@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import jsonpickle
 import socket
 
@@ -23,6 +24,16 @@ def send_request(action, username=None, password=None):
     client.close()
 
     return response
+
+def show_user_info():
+    response = send_request("get_user_info")
+
+    if "user_info" in response:
+        for user in response["user_info"]:
+            login, last_auth = user
+            user_listbox.insert(END, f"Login: {login}, Last authorization: {last_auth}")
+    else:
+        messagebox.showerror("Error", "Failed to receive info")
 
 
 root = Tk()
