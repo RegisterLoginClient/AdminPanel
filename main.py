@@ -1,5 +1,4 @@
-import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
 import jsonpickle
 import socket
 
@@ -24,3 +23,16 @@ def send_request(action, username=None, password=None):
     client.close()
 
     return response
+
+
+root = Tk()
+root.title("Admin Panel")
+
+get_info_btn = Button(root, text="Get User Info", command=show_user_info)
+get_info_btn.pack(pady=10)
+
+user_listbox = Listbox(root, width=50, height=15)
+user_listbox.pack(padx=10, pady=10)
+
+
+root.mainloop()
